@@ -1,11 +1,13 @@
-import { TreeGrid, Filter, Page,Toolbar, Edit } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Filter, Page,Toolbar, Edit,Resize, ContextMenu, Sort } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './datasource.ts';
-TreeGrid.Inject(Page, Filter,Toolbar, Edit);
+TreeGrid.Inject(Page, Filter,Toolbar, Edit,Resize,  ContextMenu, Sort);
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 let treeGridObj: TreeGrid = new TreeGrid({
   dataSource: sampleData,
   childMapping: 'subtasks',
+  
+  allowSorting: true,          
   treeColumnIndex: 1,
   allowPaging: true,
   allowFiltering: true,
@@ -15,11 +17,16 @@ let treeGridObj: TreeGrid = new TreeGrid({
     allowAdding: true,
     allowEditing: true,
     allowDeleting: true,
-    mode: 'Cell',
+    mode: 'Row',
     showDeleteConfirmDialog:'true',
     newRowPosition: 'Above'
   },
-  toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
+  contextMenuItems: ['SortAscending', 'SortDescending',
+    'Edit', 'Delete', 'Save', 'Cancel',
+    'FirstPage', 'PrevPage',
+    'LastPage', 'NextPage'],
+
+  toolbar: ['Add','Delete', 'Update', 'Cancel'],
   columns: [
     { field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, textAlign: 'Right',
     validationRules: { required: true, number: true}, width: 90},
