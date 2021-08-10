@@ -1,13 +1,12 @@
-import { TreeGrid, RowDD,Reorder, Filter, Page } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Filter, Page,Toolbar, Edit } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './datasource.ts';
-TreeGrid.Inject(Page,Reorder, Filter,RowDD);
+TreeGrid.Inject(Page, Filter,Toolbar, Edit);
 
 let treeGridObj: TreeGrid = new TreeGrid({
   dataSource: sampleData,
   childMapping: 'subtasks',
   treeColumnIndex: 1,
-  allowRowDragAndDrop: true,
-  allowReordering: true,
+
   allowPaging: true,
   allowFiltering: true,
   pageSettings: { pageSize: 15 },
